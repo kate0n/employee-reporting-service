@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ButtonBase",
+  "main": "./ButtonBase.tsx"
+}
