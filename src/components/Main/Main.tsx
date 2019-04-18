@@ -10,6 +10,7 @@ const Main = ( {children}:any ) => (
             flexDirection={"column"}
             width={"85%"}
             color={"#333333"}
+            marginLeft={"216px"}
         >
             {children}
 

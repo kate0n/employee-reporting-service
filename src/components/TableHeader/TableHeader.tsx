@@ -24,7 +24,7 @@ const TableHeader  = () =>
     <TableHeaderStyled>
         <Flex> {text.everydayReport} </Flex>
 
-        <ButtonBase variant={"default"}>
+        <ButtonBase variant={"primary"}>
             <Flex justifyContent={"center"}>
             <Box marginRight={3}> Экспорт </Box>
             <img src={download} />

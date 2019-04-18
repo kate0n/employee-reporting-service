@@ -17,23 +17,28 @@ const ErrorStyled = styled.span`
 
 const InputWrapper = styled(Box)`
     margin: 24px 0;
+    
     }
 `;
 
 const SendingErrorStyled = styled(Box)`
-    color: white;
-    font-size: 20px;
+    color: #333333;
+    font-size: 14px;
+    color: #EB5757;
+    margin-top: 8px;
     }
 `;
 
-const buttonVariant = ({invalid, dirty, pristine, submitting}:any ) => {
+const buttonVariant = ({invalid, dirty, pristine, submitting,submitFailed }:any ) => {
     let variant = "default"
     if (!pristine){
         if ( submitting && invalid) {
             variant = "error"
         } else if (dirty && !invalid) {
             variant = "primary"
-        } }
+        } } else if (invalid && submitFailed) {
+            variant = "error"
+             }
     return variant
 }
 
@@ -54,10 +59,10 @@ const required = (value: any) => (value ? undefined : 'Обязательно д
 
 // const mustBeNumber = (value:number) => (isNaN(value) ? "Номер должен состоять из цифр" : undefined);
 //
-// const mailValidate = (min: any) => (value: any) => value.length >= min ? undefined: "Некорректный адрес эл.почты"
-//
-// const composeValidators = (...validators: any) => (value: any) =>
-//     validators.reduce((error: any, validator: (arg0: any) => void) => error || validator(value), undefined);
+const passValidate = (min: any) => (value: any) => value.length >= min ? undefined: "Пароль должен содержать минимум 8 символов"
+
+const composeValidators = (...validators: any) => (value: any) =>
+    validators.reduce((error: any, validator: (arg0: any) => void) => error || validator(value), undefined);
 
 export class ContactForm extends Component {
     state ={
@@ -87,10 +92,10 @@ export class ContactForm extends Component {
         })
             .then(res=>res.json())
             .then(data => {
-                this.setState({message: "Форма успешно отправлена :)"})
+                this.setState({message: ""})
                 console.log(data) } )
             .catch(err => {
-                this.setState({message: "Произошла ошибка при отправке формы"})
+                this.setState({message: "Неверный логин или пароль"})
                 console.log(err)
             });
     };
@@ -111,30 +116,28 @@ export class ContactForm extends Component {
                 <form onSubmit={handleSubmit}>
 
                     <Field
-                        name="name"
-                        placeholder="Имя"
+                        name="login"
                         type="text"
                         validate={required}
                         component={Input}
                     >
                         {({ input, meta }:any) => (
                             <InputWrapper>
-                                <Input {...input} placeholder={"Имя"} variant={inputVariant({meta})}/>
+                                <Input {...input} placeholder={"Логин"} variant={inputVariant({meta})}/>
                                 {meta.error && meta.touched && <ErrorStyled> {meta.error} </ErrorStyled>}
                             </InputWrapper>
                         )}
                     </Field>
 
                     <Field
-                        name="phone"
-                        placeholder="Телефон"
-                        type="tel"
-                        validate={required}
+                        name="pass"
+                        type="text"
+                        validate={composeValidators(required, passValidate(8))}
                         component={Input}
                     >
                         {({ input, meta }:any) => (
                             <InputWrapper>
-                                <Input {...input} placeholder={"Телефон"} variant={ inputVariant({meta}) }/>
+                                <Input {...input} placeholder={"Пароль"} variant={ inputVariant({meta}) }/>
                                 {meta.error && meta.touched && <ErrorStyled> {meta.error} </ErrorStyled>}
                             </InputWrapper>
                         )}
@@ -142,13 +145,13 @@ export class ContactForm extends Component {
 
                     <ButtonBase
                         type="submit"
+                        size="medium"
                         variant={buttonVariant( {invalid, dirty, pristine, submitting } )}
                         disabled={submitting || pristine || invalid}>
 
                            Вход
                     </ButtonBase>
                     <SendingErrorStyled> {this.state.message} </SendingErrorStyled>
-                    {/*<pre> {JSON.stringify(values)} </pre>*/}
                 </form>
             )}
         </Form>

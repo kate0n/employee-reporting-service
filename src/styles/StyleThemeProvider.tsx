@@ -8,11 +8,11 @@ import ButtonVariant from "./variants/ButtonVariant";
 
 export const colors = {
     color0: '#ffffff',
-    color1: '#1C1C1C', //bg
-    color2: '#8F83D9', //light purple
-    color3: '#4C51C6', //dark purple
-    color4: '#EB5757', //red error
-    color5: '#4CACE0', //bright blue
+    color1: '#BDBDBD', //gray
+    color2: '#8F83D9', //light purple /active
+    color3: '#4C51C6', //dark purple / hover button
+    color4: '#2E246C', //darkesr purple / pressed
+    color5: '#', //bright blue
     color6: '#EB5757' //red error
 };
 

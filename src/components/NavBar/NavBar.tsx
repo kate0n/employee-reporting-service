@@ -16,19 +16,19 @@ import {text} from '../../assets/text';
 
 const StyledNavBar = styled(Flex)`
 	width: 216px;
-	height: 100vh;
+	min-height: 100vh;
 	background-color: #333333;
 	padding: 24px 8px;
     flex-direction: column;
     justify-content: space-between;
     line-height: 24px;
+    position: fixed;
 `;
 
 export class NavBar extends Component {
     render() {
         return(
             <StyledNavBar>
-
                 <Box>
                     <UserItem item={text.userName}  avatar={avatar}/>
 
@@ -55,7 +55,6 @@ export class NavBar extends Component {
                 </Box>
 
                 <LogOut item={text.logout} />
-
             </StyledNavBar>
         )
     }

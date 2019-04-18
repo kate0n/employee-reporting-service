@@ -1,8 +1,7 @@
 const base = {
-    border: '1px solid #E9E9E9',
     display: 'block',
     padding: '8px 16px',
-    width: '90%',
+    width: '100%',
     height: '40px',
     color: '#333333',
     fontSize: '16px',
@@ -14,15 +13,15 @@ const base = {
 
 export const InputVariant = {
   default: {
-    borderBottom: '1px solid #fff',
+    border: '1px solid #E9E9E9',
     ...base
   },
   primary: {
-    borderBottom: '1px solid #4CACE0',
+    border: '1px solid #8F83D9',
     ...base
   },
   error: {
-    borderBottom: '1px solid #CF4646',
+    border: '1px solid #EB5757',
     ...base
   },
 };

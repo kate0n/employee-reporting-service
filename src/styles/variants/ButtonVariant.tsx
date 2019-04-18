@@ -12,27 +12,27 @@ export interface IButton {
 }
 
 const base = {
-    width: '112px',
     padding: '4px 4px ',
     height: '32px',
     border: 'none',
     cursor: 'pointer',
     fontSize:  '16px',
-    color: '#ffffff',
+    color: '#ffffff'
 }
 
 export const ButtonVariant = (theme: any): IButton => {
     return {
         default: {
-            background: theme.colors.color2,
+            background: theme.colors.color1,
             ...base,
         },
         primary: {
-            background: theme.colors.color3,
+            background: theme.colors.color2,
+            '&:hover': { background: '#4C51C6'},
             ...base,
         },
         error: {
-            background: theme.colors.color4,
+            background: theme.colors.color6,
             ...base,
         },
     };

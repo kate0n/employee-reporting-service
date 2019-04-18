@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Box from '../Box/Box';
 import MenuItem from '../MenuItem/MenuItem';
 import arrowDown from "../../assets/icons/arrowDown.svg";
+// import {text} from '../../assets/text';
+
 
 const SubItem = styled(Box)`
 	width: 100%;
@@ -25,6 +27,7 @@ interface Props {
     item: string;
 }
 
+
 class DropDown extends Component<Props>{
     state = {
         display: "none"
@@ -40,17 +43,17 @@ class DropDown extends Component<Props>{
     render() {
         return(
             <Box  onClick={this.dropDown}>
-            <MenuItem item={this.props.item}>
-                <img src={arrowDown}  />
-            </MenuItem>
+        <MenuItem item={this.props.item}>
+            <img src={arrowDown}  />
+        </MenuItem>
 
+        <SubItem display={this.state.display} marginTop={5}>
+        {this.props.subitemFirst}
+        </SubItem>
             <SubItem display={this.state.display} marginTop={5}>
-            {this.props.subitemFirst}
+                {this.props.subitemSecond}
             </SubItem>
-                <SubItem display={this.state.display} marginTop={5}>
-                    {this.props.subitemSecond}
-                </SubItem>
-            </Box>
+        </Box>
         )
     }
 }

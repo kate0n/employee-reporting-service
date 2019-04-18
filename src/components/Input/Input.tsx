@@ -24,8 +24,8 @@ export const Input = styled.input<IInput>`
     color: #737373;
   } 
   :-webkit-autofill { 
-    -webkit-box-shadow: 0 0 0px 1000px #1C1C1C inset;
-    -webkit-text-fill-color: #4CACE0;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+    -webkit-text-fill-color: #333333;
     }
 `;
 

@@ -18,25 +18,41 @@ const MenuItemStyled = styled(Box)`
 interface Props {
     item: string;
 }
-
-export class MenuItem extends Component<Props> {
-    state = {
-        backgroundColor: ""
-    }
-    toogleBackground = () => {
-        this.setState( { backgroundColor: "#4C51C6" } );
-    }
-    render() {
-        return (
-
-        <MenuItemStyled onClick={this.toogleBackground}
-            backgroundColor={this.state.backgroundColor}>
-            {this.props.item} {this.props.children} </MenuItemStyled>
-        )
-    }
+interface State {
+    active: boolean;
 }
 
-// const MenuItem  = ({item, children, backgroundColor, onClick}:any) =>
-//     <MenuItemStyled backgroundColor={backgroundColor} onClick={onClick}> {item} {children} </MenuItemStyled>
+export class MenuItem extends Component<Props, State> {
+    // state = {
+    //     backgroundColor: ""
+    // }
+    state = {
+        active: false
+    };
+
+    toogleBackground = () => {
+        this.setState( ({active}) =>{
+            return {
+                active: !active
+            };
+        });
+    };
+
+    render() {
+        const { active } = this.state;
+        let background = "";
+        if (active) {
+            background = "#4C51C6";
+        } else { background = ""}
+        return (
+
+        <MenuItemStyled
+            onClick={this.toogleBackground}
+            backgroundColor={background}>
+            {this.props.item} {this.props.children} </MenuItemStyled>
+        )
+    } }
+
+
 
 export default MenuItem;
