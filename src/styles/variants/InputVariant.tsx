@@ -12,16 +12,16 @@ const base = {
 }
 
 export const InputVariant = {
-  default: {
-    border: '1px solid #E9E9E9',
-    ...base
-  },
-  primary: {
-    border: '1px solid #8F83D9',
-    ...base
-  },
-  error: {
-    border: '1px solid #EB5757',
-    ...base
-  },
+    default: {
+        border: '1px solid #E9E9E9',
+        ...base
+    },
+    primary: {
+        border: '1px solid #8F83D9',
+        ...base
+    },
+    error: {
+        border: '1px solid #EB5757',
+        ...base
+    },
 };

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import styled from 'styled-components';
 
 /** Components */
@@ -10,29 +10,51 @@ import DropDown from '../MenuItem/DropDown';
 import LogOut from '../LogOut/LogOut';
 
 import avatar from '../../assets/images/avatar.png';
+import BurgerIcon from '../../assets/icons/BurgerIcon';
+import CloseBurger from '../../assets/icons/CloseBurger';
 import {text} from '../../assets/text';
 
 const StyledNavBar = styled(Flex)`
 	width: 216px;
 	min-height: 100vh;
 	background-color: #333333;
-	padding: 24px 8px;
+	padding: 56px 8px 24px 8px;
     flex-direction: column;
     justify-content: space-between;
     line-height: 24px;
     position: fixed;
-    @media(max-width: 992px) {
+    z-index: 1;
+    @media(min-width: 992px) {
         display: none;
     }
 `;
 
+interface State {
+    isOpen: boolean;
+}
 
-export class NavBar extends Component {
+export class NavBar extends Component<any, State> {
+    state = {
+        isOpen: false
+    }
+
+    showNavBar = () => {
+        this.setState(({isOpen}) => {
+            return {
+                isOpen: !isOpen
+            };
+        });
+    };
+
+    toggleBurger = (isOpen: boolean) => isOpen ? <CloseBurger/> : <BurgerIcon/>;
 
     render() {
-        return (<StyledNavBar>
+        return (<Fragment>
+                <Box position={"fixed"} zIndex={"2"} margin={"0 0 16px 0"}
+                     onClick={this.showNavBar}> {this.toggleBurger(this.state.isOpen)} </Box>
+                <StyledNavBar display={this.state.isOpen ? 'block' : 'none !important'}>
                     <Box>
-                        <UserItem avatar={avatar} username={text.userName} />
+                        <UserItem avatar={avatar} username={text.userName}/>
 
                         <MenuItem> {text.everydayReport} </MenuItem>
 
@@ -59,6 +81,7 @@ export class NavBar extends Component {
 
                     <LogOut children={text.logout}/>
                 </StyledNavBar>
+            </Fragment>
         )
     }
 }

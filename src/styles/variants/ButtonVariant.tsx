@@ -6,9 +6,9 @@ export enum ButtonEnum {
 }
 
 export interface IButton {
-  default: any;
-  primary?: any;
-  error?: any;
+    default: any;
+    primary?: any;
+    error?: any;
 }
 
 const base = {
@@ -16,8 +16,10 @@ const base = {
     height: '32px',
     border: 'none',
     cursor: 'pointer',
-    fontSize:  '16px',
-    color: '#ffffff'
+    fontSize: '16px',
+    lineHeight: '24px',
+    color: '#ffffff',
+    margin: '4px 8px'
 }
 
 export const ButtonVariant = (theme: any): IButton => {
@@ -28,7 +30,7 @@ export const ButtonVariant = (theme: any): IButton => {
         },
         primary: {
             background: theme.colors.color2,
-            '&:hover': { background: '#4C51C6'},
+            '&:hover': {background: '#4C51C6'},
             ...base,
         },
         error: {

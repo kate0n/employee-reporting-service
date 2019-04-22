@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider } from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 
 /** Variants */
 import {ButtonSize} from './variants/ButtonSize';
@@ -21,8 +21,8 @@ const Space = [0, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96];
 const Breakpoints = ['1024px', '1200px', '1440px'];
 
 const boxShadow = [
-  '2px 4px 8px 0px rgba(138,138,138,0.5)',
-  '2px 2px 4px 0px rgba(0,127,175,1)'
+    '2px 4px 8px 0px rgba(138,138,138,0.5)',
+    '2px 2px 4px 0px rgba(0,127,175,1)'
 ];
 
 const BaseTheme = {
@@ -35,8 +35,8 @@ const BaseTheme = {
     breakpoints: Breakpoints,
     colors: colors,
     fontFamily: {
-      default: 'IBM Plex Mono',
-      secondary: 'Furore'
+        default: 'IBM Plex Mono',
+        secondary: 'Furore'
     },
     variant: {
         buttons: {},
@@ -47,8 +47,8 @@ const BaseTheme = {
 
 BaseTheme.variant.buttons = ButtonVariant(BaseTheme);
 
-export const StyledThemeProvider: any = ({ children }: any) => (
-  <ThemeProvider theme={BaseTheme}>{children}</ThemeProvider>
+export const StyledThemeProvider: any = ({children}: any) => (
+    <ThemeProvider theme={BaseTheme}>{children}</ThemeProvider>
 );
 
 export default StyledThemeProvider;

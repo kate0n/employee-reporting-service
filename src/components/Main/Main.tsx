@@ -1,20 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 
 /** Components */
 import {Flex} from '../Flex/Flex';
 
-const Main = ( {children}:any ) => (
-        <Flex
-            py={5}
-            px={5}
-            flexDirection={"column"}
-            width={"85%"}
-            color={"#333333"}
-            marginLeft={"216px"}
-        >
-            {children}
+const StyledMain = styled(Flex)`
+    padding: 24px;
+    flex-direction: column;
+    width: 85%;
+    color: #333333;
+    margin-left: 216px;
+    @media(max-width: 992px) {
+        width: 100%;
+        margin-left: 0;
+    }
+`;
 
-        </Flex>
-)
+
+const Main = ({children}: any) => (
+    <StyledMain>
+        {children}
+    </StyledMain>
+);
 
 export default Main;

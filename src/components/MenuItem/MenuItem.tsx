@@ -15,44 +15,15 @@ const MenuItemStyled = styled(Box)`
 	}
 `;
 
-interface Props {
-    item: string;
-}
-interface State {
-    active: boolean;
-}
-
-export class MenuItem extends Component<Props, State> {
-    // state = {
-    //     backgroundColor: ""
-    // }
-    state = {
-        active: false
-    };
-
-    toogleBackground = () => {
-        this.setState( ({active}) =>{
-            return {
-                active: !active
-            };
-        });
-    };
+export class MenuItem extends Component {
 
     render() {
-        const { active } = this.state;
-        let background = "";
-        if (active) {
-            background = "#4C51C6";
-        } else { background = ""}
         return (
-
-        <MenuItemStyled
-            onClick={this.toogleBackground}
-            backgroundColor={background}>
-            {this.props.item} {this.props.children} </MenuItemStyled>
+            <MenuItemStyled>
+                {this.props.children}
+            </MenuItemStyled>
         )
-    } }
-
-
+    }
+}
 
 export default MenuItem;

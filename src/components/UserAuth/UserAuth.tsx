@@ -39,11 +39,11 @@ const UserAuth = () => (
         <FormContainer>
             <FormHeader> ВХОД </FormHeader>
             <InnerFormContainer>
-                <AuthForm />
+                <AuthForm/>
                 <Box
                     paddingTop={3}
-                    textAlign={"center"} >
-                        Забыли пароль?
+                    textAlign={"center"}>
+                    Забыли пароль?
                 </Box>
             </InnerFormContainer>
         </FormContainer>

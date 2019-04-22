@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from "styled-components";
 
 /** Components */
 import Box from '../Box/Box';
 import MenuItem from '../MenuItem/MenuItem';
 import arrowDown from "../../assets/icons/arrowDown.svg";
-// import {text} from '../../assets/text';
 
 
 const SubItem = styled(Box)`
@@ -24,36 +23,46 @@ const SubItem = styled(Box)`
 interface Props {
     subitemFirst: string;
     subitemSecond: string;
-    item: string;
 }
 
+interface State {
+    active: boolean;
+}
 
-class DropDown extends Component<Props>{
+class DropDown extends Component<Props, State> {
     state = {
-        display: "none"
+        active: false
     }
+
     dropDown = () => {
-        if (this.state.display === "none"){
-            this.setState({ display: "block" })
-        }  else if (this.state.display === "block") {
-            this.setState({ display: "none" })
-        }
-    }
+        this.setState(({active}) => {
+            return {
+                active: !active
+            };
+        });
+    };
+
 
     render() {
-        return(
-            <Box  onClick={this.dropDown}>
-        <MenuItem item={this.props.item}>
-            <img src={arrowDown}  />
-        </MenuItem>
+        return (
+            <Box onClick={this.dropDown}>
 
-        <SubItem display={this.state.display} marginTop={5}>
-        {this.props.subitemFirst}
-        </SubItem>
-            <SubItem display={this.state.display} marginTop={5}>
-                {this.props.subitemSecond}
-            </SubItem>
-        </Box>
+                <MenuItem>
+                    {this.props.children}
+                    <img src={arrowDown}/>
+                </MenuItem>
+
+                <Box display={this.state.active ? 'block' : 'none'}>
+                    <SubItem marginBottom={5}>
+                        {this.props.subitemFirst}
+                    </SubItem>
+
+                    <SubItem marginBottom={5}>
+                        {this.props.subitemSecond}
+                    </SubItem>
+                </Box>
+
+            </Box>
         )
     }
 }

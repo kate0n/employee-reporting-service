@@ -15,9 +15,9 @@ const LogOutStyled = styled(Box)`
 	}
 `;
 
-const LogOut  = ({item}:any) => (
+const LogOut = ({children}: any) => (
 
-    <LogOutStyled> {item} </LogOutStyled>
+    <LogOutStyled> {children} </LogOutStyled>
 )
 
 export default LogOut;

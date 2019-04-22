@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
-import { Form, Field } from 'react-final-form';
+import {Form, Field} from 'react-final-form';
 
 /** Components */
-import { Input } from '../Input/Input';
-import { ButtonBase } from '../ButtonBase/ButtonBase';
+import {Input} from '../Input/Input';
+import {ButtonBase} from '../ButtonBase/ButtonBase';
 import Box from '../Box/Box';
-// import Flex from '../Flex/Flex';
 
 const ErrorStyled = styled.span`
     color: red;
@@ -29,27 +28,27 @@ const SendingErrorStyled = styled(Box)`
     }
 `;
 
-const buttonVariant = ({invalid, dirty, pristine, submitting,submitFailed }:any ) => {
+const buttonVariant = ({invalid, dirty, pristine, submitting, submitFailed}: any) => {
     let variant = "default"
-    if (!pristine){
-        if ( submitting && invalid) {
+    if (!pristine) {
+        if (submitting && invalid) {
             variant = "error"
         } else if (dirty && !invalid) {
             variant = "primary"
-        } } else if (invalid && submitFailed) {
-            variant = "error"
-             }
+        }
+    } else if (invalid && submitFailed) {
+        variant = "error"
+    }
     return variant
 }
 
-const inputVariant = ( {meta}:any ) => {
+const inputVariant = ({meta}: any) => {
     let variant = "default";
     if (meta.active) {
         variant = "primary";
-    } else if (meta.dirty && meta.active ) {
+    } else if (meta.dirty && meta.active) {
         variant = "error";
-    }
-    else if (meta.touched && meta.invalid) {
+    } else if (meta.touched && meta.invalid) {
         variant = "error"
     }
     return variant;
@@ -59,30 +58,30 @@ const required = (value: any) => (value ? undefined : 'Обязательно д
 
 // const mustBeNumber = (value:number) => (isNaN(value) ? "Номер должен состоять из цифр" : undefined);
 //
-const passValidate = (min: any) => (value: any) => value.length >= min ? undefined: "Пароль должен содержать минимум 8 символов"
+const passValidate = (min: any) => (value: any) => value.length >= min ? undefined : "Пароль должен содержать минимум 8 символов"
 
 const composeValidators = (...validators: any) => (value: any) =>
     validators.reduce((error: any, validator: (arg0: any) => void) => error || validator(value), undefined);
 
 export class ContactForm extends Component {
-    state ={
+    state = {
         message: ""
     }
 
-    handleSubmit = (values:any) => {
+    handleSubmit = (values: any) => {
         this.setState({message: ""});
         let name = values.name;
         let phone = values.phone;
         let email = values.email;
         let comment = values.comment;
         let file = values.file;
-        return fetch('./response.json',{
+        return fetch('./response.json', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 name: name,
                 phone: phone,
                 email: email,
@@ -90,10 +89,11 @@ export class ContactForm extends Component {
                 file: file,
             }),
         })
-            .then(res=>res.json())
+            .then(res => res.json())
             .then(data => {
                 this.setState({message: ""})
-                console.log(data) } )
+                console.log(data)
+            })
             .catch(err => {
                 this.setState({message: "Неверный логин или пароль"})
                 console.log(err)
@@ -112,7 +112,7 @@ export class ContactForm extends Component {
         return <Form
             onSubmit={this.handleSubmit}
         >
-            {({ handleSubmit, submitting, pristine, invalid, dirty }:any) => (
+            {({handleSubmit, submitting, pristine, invalid, dirty}: any) => (
                 <form onSubmit={handleSubmit}>
 
                     <Field
@@ -121,7 +121,7 @@ export class ContactForm extends Component {
                         validate={required}
                         component={Input}
                     >
-                        {({ input, meta }:any) => (
+                        {({input, meta}: any) => (
                             <InputWrapper>
                                 <Input {...input} placeholder={"Логин"} variant={inputVariant({meta})}/>
                                 {meta.error && meta.touched && <ErrorStyled> {meta.error} </ErrorStyled>}
@@ -135,9 +135,9 @@ export class ContactForm extends Component {
                         validate={composeValidators(required, passValidate(8))}
                         component={Input}
                     >
-                        {({ input, meta }:any) => (
+                        {({input, meta}: any) => (
                             <InputWrapper>
-                                <Input {...input} placeholder={"Пароль"} variant={ inputVariant({meta}) }/>
+                                <Input {...input} placeholder={"Пароль"} variant={inputVariant({meta})}/>
                                 {meta.error && meta.touched && <ErrorStyled> {meta.error} </ErrorStyled>}
                             </InputWrapper>
                         )}
@@ -146,15 +146,16 @@ export class ContactForm extends Component {
                     <ButtonBase
                         type="submit"
                         size="medium"
-                        variant={buttonVariant( {invalid, dirty, pristine, submitting } )}
+                        variant={buttonVariant({invalid, dirty, pristine, submitting})}
                         disabled={submitting || pristine || invalid}>
 
-                           Вход
+                        Вход
                     </ButtonBase>
                     <SendingErrorStyled> {this.state.message} </SendingErrorStyled>
                 </form>
             )}
         </Form>
-    }}
+    }
+}
 
 export default ContactForm;
