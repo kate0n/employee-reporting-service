@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 /** Components */
@@ -15,15 +15,10 @@ const MenuItemStyled = styled(Box)`
 	}
 `;
 
-export class MenuItem extends Component {
-
-    render() {
-        return (
-            <MenuItemStyled>
-                {this.props.children}
-            </MenuItemStyled>
-        )
-    }
-}
+const MenuItem = ({children}: any) => (
+    <MenuItemStyled>
+        {children}
+    </MenuItemStyled>
+);
 
 export default MenuItem;

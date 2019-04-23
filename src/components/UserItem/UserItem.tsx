@@ -1,16 +1,22 @@
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 /** Components */
 import Box from "../Box/Box";
 import Flex from "../Flex/Flex";
 
+const UserItemStyled = styled(Flex)`
+	align-items: center;
+    margin-bottom: 24px;
+    margin-left: 16px
+    @media(max-width: 992px) {
+        margin-top: 32px;
+    }
+`;
+
 const UserItem = ({avatar, username}: any) => (
 
-    <Flex
-        alignItems={"center"}
-        marginBottom={5}
-        marginLeft={4}>
+    <UserItemStyled>
 
         <img src={avatar}/>
 
@@ -20,7 +26,7 @@ const UserItem = ({avatar, username}: any) => (
             {username}
         </Box>
 
-    </Flex>
+    </UserItemStyled>
 )
 
 export default UserItem;

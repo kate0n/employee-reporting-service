@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Box from '../Box/Box';
 import MenuItem from '../MenuItem/MenuItem';
 import arrowDown from "../../assets/icons/arrowDown.svg";
-
+import {text} from '../../assets/text';
 
 const SubItem = styled(Box)`
 	width: 100%;
@@ -20,16 +20,22 @@ const SubItem = styled(Box)`
 	}
 `;
 
-interface Props {
-    subitemFirst: string;
-    subitemSecond: string;
-}
 
 interface State {
     active: boolean;
 }
 
-class DropDown extends Component<Props, State> {
+class ChildMenuItemList extends Component {
+    render() {
+        return text.child.map((subitem: any, index: any) => {
+            return (
+                <SubItem key={index} href={subitem.href}> {subitem.subitem} </SubItem>
+            )
+        })
+    }
+}
+
+class DropDown extends Component<any, State> {
     state = {
         active: false
     }
@@ -53,13 +59,7 @@ class DropDown extends Component<Props, State> {
                 </MenuItem>
 
                 <Box display={this.state.active ? 'block' : 'none'}>
-                    <SubItem marginBottom={5}>
-                        {this.props.subitemFirst}
-                    </SubItem>
-
-                    <SubItem marginBottom={5}>
-                        {this.props.subitemSecond}
-                    </SubItem>
+                    <ChildMenuItemList/>
                 </Box>
 
             </Box>

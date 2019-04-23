@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const HoverIcons = styled.div`
     fill: #8F83D9;
     cursor: pointer;
-    margin: 16px 16px 0px 24px;
+    margin: 16px 0 8px 24px;
     display: none;
     @media(max-width: 992px) {
         display: block;
