@@ -1,6 +1,8 @@
+import avatar from './images/avatar.png';
+
 export const navBarConfig = {
     profile: {
-        avatar: '',
+        avatar: avatar,
         userName: 'Кириллов Владимир',
     },
     menu: [

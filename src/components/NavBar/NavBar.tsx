@@ -11,7 +11,6 @@ import LogOut from '../LogOut/LogOut';
 import BurgerIcon from '../../assets/icons/BurgerIcon';
 import CloseBurger from '../../assets/icons/CloseBurger';
 
-import avatar from '../../assets/images/avatar.png';
 import {navBarConfig} from '../../assets/navBarConfig';
 
 const StyledNavBar = styled(Flex)`
@@ -59,7 +58,7 @@ export class NavBar extends Component<any, State> {
                       onClick={this.showNavBar}> {this.toggleBurger(this.state.isOpen)} </Flex>
                 <StyledNavBar display={this.state.isOpen ? 'flex !important' : 'none '}>
                     <Box>
-                        <UserItem avatar={avatar} username={navBarConfig.profile.userName}/>
+                        <UserItem avatar={navBarConfig.profile.avatar} username={navBarConfig.profile.userName}/>
 
                         <MenuItem> {navBarConfig.menu[0].title} </MenuItem>
 

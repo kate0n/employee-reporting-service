@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Box from '../Box/Box';
 import MenuItem from '../MenuItem/MenuItem';
 import arrowDown from "../../assets/icons/arrowDown.svg";
-// import {navBarConfig} from '../../assets/navBarConfig';
 
 const SubLink = styled(Box)`
 	width: 100%;
@@ -13,7 +12,6 @@ const SubLink = styled(Box)`
 	padding: 8px 16px 8px 24px;
 	margin: 8px 0;
 	cursor: pointer;
-	// color: #D3D3D3;
 	font-size: 14px;
 	:hover {
 	    background-color: #8F83D9
