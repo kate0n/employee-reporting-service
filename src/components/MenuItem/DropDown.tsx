@@ -5,9 +5,9 @@ import styled from "styled-components";
 import Box from '../Box/Box';
 import MenuItem from '../MenuItem/MenuItem';
 import arrowDown from "../../assets/icons/arrowDown.svg";
-import {text} from '../../assets/text';
+// import {navBarConfig} from '../../assets/navBarConfig';
 
-const SubItem = styled(Box)`
+const SubLink = styled(Box)`
 	width: 100%;
 	height: 40px;
 	padding: 8px 16px 8px 24px;
@@ -25,17 +25,22 @@ interface State {
     active: boolean;
 }
 
-class ChildMenuItemList extends Component {
+interface Props {
+    subLink: any;
+}
+
+class ChildMenuItemList extends Component<Props> {
     render() {
-        return text.child.map((subitem: any, index: any) => {
+        let subLink = this.props.subLink;
+        return subLink.map((sublink: any, index: any) => {
             return (
-                <SubItem key={index} href={subitem.href}> {subitem.subitem} </SubItem>
+                <SubLink key={index} href={sublink.link}> {sublink.title} </SubLink>
             )
         })
     }
 }
 
-class DropDown extends Component<any, State> {
+class DropDown extends Component<Props, State> {
     state = {
         active: false
     }
@@ -59,7 +64,7 @@ class DropDown extends Component<any, State> {
                 </MenuItem>
 
                 <Box display={this.state.active ? 'block' : 'none'}>
-                    <ChildMenuItemList/>
+                    <ChildMenuItemList subLink={this.props.subLink}/>
                 </Box>
 
             </Box>

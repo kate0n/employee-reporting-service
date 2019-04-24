@@ -5,7 +5,7 @@ import Main from './components/Main/Main';
 import NavBar from './components/NavBar/NavBar';
 import Table from './components/Table/Table';
 import PageTitleWithExportAndSetting from './components/TableHeader/PageTitleWithExportAndSetting';
-import {text} from './assets/text';
+import {navBarConfig} from './assets/navBarConfig';
 
 // import UserAuth from './components/UserAuth/UserAuth'; <UserAuth/>
 
@@ -16,7 +16,7 @@ export class App extends Component {
             <Fragment>
                 <NavBar/>
                 <Main>
-                    <PageTitleWithExportAndSetting title={text.everydayReport}/>
+                    <PageTitleWithExportAndSetting title={navBarConfig.menu[0].title}/>
                     <Table/>
                 </Main>
             </Fragment>

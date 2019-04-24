@@ -12,7 +12,7 @@ import BurgerIcon from '../../assets/icons/BurgerIcon';
 import CloseBurger from '../../assets/icons/CloseBurger';
 
 import avatar from '../../assets/images/avatar.png';
-import {text} from '../../assets/text';
+import {navBarConfig} from '../../assets/navBarConfig';
 
 const StyledNavBar = styled(Flex)`
 	width: 216px;
@@ -59,20 +59,20 @@ export class NavBar extends Component<any, State> {
                       onClick={this.showNavBar}> {this.toggleBurger(this.state.isOpen)} </Flex>
                 <StyledNavBar display={this.state.isOpen ? 'flex !important' : 'none '}>
                     <Box>
-                        <UserItem avatar={avatar} username={text.userName}/>
+                        <UserItem avatar={avatar} username={navBarConfig.profile.userName}/>
 
-                        <MenuItem> {text.everydayReport} </MenuItem>
+                        <MenuItem> {navBarConfig.menu[0].title} </MenuItem>
 
-                        <DropDown> {text.annualReport} </DropDown>
+                        <DropDown subLink={navBarConfig.menu[1].subLink}> {navBarConfig.menu[1].title} </DropDown>
 
-                        <MenuItem> {text.expenses}  </MenuItem>
+                        <MenuItem> {navBarConfig.menu[2].title}  </MenuItem>
 
-                        <DropDown> {text.object}</DropDown>
+                        <DropDown subLink={navBarConfig.menu[3].subLink}> {navBarConfig.menu[3].title}</DropDown>
 
-                        <DropDown> {text.objects} </DropDown>
+                        <DropDown subLink={navBarConfig.menu[4].subLink}> {navBarConfig.menu[4].title} </DropDown>
                     </Box>
 
-                    <LogOut children={text.logout}/>
+                    <LogOut children={"Выйти"}/>
                 </StyledNavBar>
             </Fragment>
         )
